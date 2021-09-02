@@ -56,9 +56,10 @@ class Team:
                 subscription_status = ' x '
             print(subscription_status + self.dict_members[key].get_full_name())
 
-    def get_team_members_names(self):
+    def get_subscribed_team_members_names(self):
         list_team_members_names: str = []
         for key in self.dict_members:
-            list_team_members_names.append(self.dict_members[key].get_full_name())
+            if self.dict_members[key].get_subscription_status() is True:
+                list_team_members_names.append(self.dict_members[key].get_full_name())
         return list_team_members_names
 

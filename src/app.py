@@ -10,7 +10,7 @@ def main():
     team.add_members_by_json(members_json)
     team.print_team()
     print("\n\n")
-    scheduler = Scheduler(team.get_team_members_names(), 5)
+    scheduler = Scheduler(team.get_subscribed_team_members_names(), 5)
     print(scheduler.random_pair_generator())
 
 
