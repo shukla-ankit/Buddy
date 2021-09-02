@@ -2,23 +2,22 @@
 
 class Member:
     def __init__(self, f_name: str, l_name: str, email: str):
-        self.f_name = f_name
-        self.l_name = l_name
-        self.email = email
-        self.is_subscribed = True
+        self.__f_name = f_name
+        self.__l_name = l_name
+        self.__email = email
+        self.__is_subscribed = True
 
     def get_full_name(self):
-        return self.f_name + ' ' + self.l_name
+        return self.__f_name + ' ' + self.__l_name
 
     def subscribe(self):
-        self.is_subscribed = True
+        self.__is_subscribed = True
 
     def unsubscribe(self):
-        self.is_subscribed = False
+        self.__is_subscribed = False
 
-    def get_subscription_status(self):
-        return self.is_subscribed
+    def has_subscribed(self):
+        return self.__is_subscribed
 
     def get_email(self):
-        return self.email
-
+        return self.__email
