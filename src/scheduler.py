@@ -1,5 +1,5 @@
 from typing import List
-from random import seed, random
+from random import seed, randint
 
 
 class Scheduler:
@@ -11,38 +11,32 @@ class Scheduler:
         self.__all_unique_permutations = []
         self.permuteUnique(list_team_members_names)
 
-    def permuteUnique(self, t_list_team_members_names: List[str]):
-        list_team_members_names = t_list_team_members_names.copy()
-        list_team_members_names.sort()
-        list_member_names: List[str] = []
-        used = [False] * len(list_team_members_names)
-        self.permute(list_team_members_names, list_member_names, used)
-        print('Total permutations = ' + len(self.__all_unique_permutations))
+    def permuteUnique(self, list_team_members_names: List[str]):
+        def permute(i: int):
+            if i == len(list_team_members_names):
+                self.__all_unique_permutations.append(list_team_members_names[:])
 
-    def permute(self, original_list_members_names: List[str], permutation_list_members_names: List[str], list_members_used_status: List[bool]):
-        if len(original_list_members_names) == len(permutation_list_members_names):
-            self.__all_unique_permutations.append(permutation_list_members_names.copy())
-            print(permutation_list_members_names)
-            return
-        for i in range(len(original_list_members_names)):
-            if list_members_used_status[i] is False:
-                if i == 0 or original_list_members_names[i - 1] != original_list_members_names[i] or list_members_used_status[i - 1]:
-                    list_members_used_status[i] = True
-                    permutation_list_members_names.append(original_list_members_names[i])
-                    self.permute(original_list_members_names, permutation_list_members_names, list_members_used_status)
-                    list_members_used_status[i] = False
-                    permutation_list_members_names.pop(len(permutation_list_members_names) - 1)
+            for j in range(i, len(list_team_members_names)):
+                list_team_members_names[i], list_team_members_names[j] = list_team_members_names[j], \
+                                                                         list_team_members_names[i]
+                permute(i + 1)
+                list_team_members_names[i], list_team_members_names[j] = list_team_members_names[j], \
+                                                                         list_team_members_names[i]
+
+        permute(0)
+        self.__all_unique_permutations = list(set(map(lambda x: tuple(x), self.__all_unique_permutations)))
 
     def generate_schedule(self) -> List[List[str]]:
         schedule: List[List[str]] = []
         seed(7) # 7 is prime, so chosen for seed generation
         list_existing_indices = []
+        num_permutations = len(self.__all_unique_permutations)
         for i in range(self.__n_days):
             if len(list_existing_indices) == i:
                 list_existing_indices.clear()
-            r = random() // len(self.__all_unique_permutations[0])
+            r = randint(num_permutations)
             while r in list_existing_indices:
-                r = random() // len(self.__all_unique_permutations[0])
+                r = randint(num_permutations)
             list_existing_indices.append(r)
             schedule.append(self.__all_unique_permutations[r])
         return schedule
