@@ -11,7 +11,7 @@ def main():
     team.print_team()
     print("\n\n")
     scheduler = Scheduler(team.get_subscribed_team_members_names(), 5)
-    print(scheduler.random_pair_generator())
+    print(scheduler.generate_schedule())
 
 
 if __name__ == '__main__':

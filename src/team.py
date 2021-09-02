@@ -17,7 +17,7 @@ class Team:
 
     def add_member(self, f_name: str, l_name: str, email: str):
         try:
-            if self.is_email_taken(email) is False:
+            if self.__is_email_taken(email) is False:
                 self.__map_emails_to_members[email] = Member(f_name, l_name, email)
             else:
                 raise Exception('Entered email {' + email + '} already exists in employee pool!')
@@ -29,7 +29,7 @@ class Team:
         try:
             for elem in members_json['Members']:
                 if elem is not None:
-                    if self.is_email_taken(elem['email']) is False:
+                    if self.__is_email_taken(elem['email']) is False:
                         self.add_member(elem['f_name'], elem['l_name'], elem['email'])
                     else:
                         raise Exception('Entered email {' + elem['email'] + '} already exists in employee pool!')
@@ -39,7 +39,7 @@ class Team:
 
     def remove_by_email(self, email: str):
         try:
-            if self.is_email_taken(email):
+            if self.__is_email_taken(email):
                 del self.__map_emails_to_members[email]
             else:
                 raise Exception('Entered email {' + email + '} not found in employee pool!')
