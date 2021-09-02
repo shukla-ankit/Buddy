@@ -8,7 +8,7 @@ As most of the people are Working-From-Home these days, social interactions have
 Step 1. Update ./data/members.json file with team members information
 Step 2.
 ```
-python3 ./src/app.py
+python3 ./src/app.py <json-file-path>
 ```
 
 ## Requisite
