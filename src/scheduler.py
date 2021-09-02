@@ -2,7 +2,7 @@ from typing import List
 from random import seed, random
 
 
-class BuddyScheduler:
+class Scheduler:
     def __init__(self, list_team_members_names: List[str], n_days: int):
         self.n_days = n_days
         self.list_team_members_names = list_team_members_names.copy()
