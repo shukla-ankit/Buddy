@@ -75,7 +75,7 @@ class Team:
         return list_team_members_names
 
     def print_team(self):
-        print('\nTeam ', self.__t_name, '\n--------------------------------------')
+        print('\nTeam ', self.__t_name, ' (', str(len(self.__map_emails_to_members)),')\n--------------------------------------')
         for email in self.__map_emails_to_members:
             subscription_status = ' x '
             if self.__get_member(email).has_subscribed():
