@@ -37,8 +37,10 @@ class Scheduler:
                 pair = []
             pair.append(list_members_names[i])
         if is_size_uneven:
-            list_pairs[rand.roll_dice_MaxMin(minimum_number=0, maximum_number=len(list_pairs))].append(list_members_names[-1])
-            list_pairs[- 1].sort()
+            k = rand.roll_dice_MaxMin(minimum_number=0, maximum_number=len(list_pairs)-1)
+            print (k)
+            list_pairs[k].append(list_members_names[-1])
+            list_pairs[k].sort()
         list_pairs.sort()
         return list_pairs
 
