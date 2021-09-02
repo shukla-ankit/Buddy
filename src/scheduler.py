@@ -19,17 +19,17 @@ class Scheduler:
         self.permute(list_team_members_names, list_member_names, used)
         print('Total permutations = ' + len(self.__all_unique_permutations))
 
-    def permute(self, list_team_members_names: List[str], permutation_list_members_names: List[str], list_members_used_status: List[bool]):
-        if len(list_team_members_names) == len(permutation_list_members_names):
+    def permute(self, original_list_members_names: List[str], permutation_list_members_names: List[str], list_members_used_status: List[bool]):
+        if len(original_list_members_names) == len(permutation_list_members_names):
             self.__all_unique_permutations.append(permutation_list_members_names.copy())
             print(permutation_list_members_names)
             return
-        for i in range(len(list_team_members_names)):
+        for i in range(len(original_list_members_names)):
             if list_members_used_status[i] is False:
-                if i == 0 or list_team_members_names[i - 1] != list_team_members_names[i] or list_members_used_status[i - 1]:
+                if i == 0 or original_list_members_names[i - 1] != original_list_members_names[i] or list_members_used_status[i - 1]:
                     list_members_used_status[i] = True
-                    permutation_list_members_names.append(list_team_members_names[i])
-                    self.permute(list_team_members_names, permutation_list_members_names, list_members_used_status)
+                    permutation_list_members_names.append(original_list_members_names[i])
+                    self.permute(original_list_members_names, permutation_list_members_names, list_members_used_status)
                     list_members_used_status[i] = False
                     permutation_list_members_names.pop(len(permutation_list_members_names) - 1)
 
