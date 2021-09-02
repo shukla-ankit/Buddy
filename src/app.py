@@ -25,10 +25,12 @@ def main():
         i = i + 1
         print('Day ' + str(i) + ': ')
         for pair in pairs:
+            str_pair = '    [' + list_members[pair[0]]+ ', ' + list_members[pair[1]]
             if len(pair) == 2:
-                print('    ['+ list_members[pair[0]]+ ', ' +  list_members[pair[1]] + ']')
+                str_pair = str_pair + ']'
             else:
-                print('    ['+ list_members[pair[0]]+ ', ' +  list_members[pair[1]] + ', ' + list_members[pair[2]] + ']')
+                str_pair = str_pair + ', ' + list_members[pair[2]] + ']'
+            print(str_pair)
     print("--- %s seconds ---" % (time.time() - start_time))
 
 
