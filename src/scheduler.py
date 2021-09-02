@@ -1,6 +1,6 @@
 from typing import List
 from random import seed, randint
-
+import random_dice_roller as rand
 
 class Scheduler:
     def __init__(self, list_team_members_names: List[str], n_days: int):
@@ -34,9 +34,11 @@ class Scheduler:
         for i in range(self.__n_days):
             if len(list_existing_indices) == i:
                 list_existing_indices.clear()
-            r = randint(num_permutations)
+            # r = randint(num_permutations)
+            r = rand.roll_dice_MaxMin(minimum_number=0,maximum_number=num_permutations)
             while r in list_existing_indices:
-                r = randint(num_permutations)
+                # r = randint(num_permutations)
+                r = rand.roll_dice_MaxMin(minimum_number=0, maximum_number=num_permutations)
             list_existing_indices.append(r)
             schedule.append(self.__all_unique_permutations[r])
         return schedule
