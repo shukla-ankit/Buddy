@@ -32,11 +32,14 @@ class Scheduler:
         pair = []
         for i in range(len(list_members_names)):
             if len(pair) == 2:
+                pair.sort()
                 list_pairs.append(pair)
                 pair = []
             pair.append(list_members_names[i])
         if is_size_uneven:
             list_pairs[- 1].append(list_members_names[-1])
+            list_pairs[- 1].sort()
+        list_pairs.sort()
         return list_pairs
 
     def generate_schedule(self) -> List[List[str]]:
